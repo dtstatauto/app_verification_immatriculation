@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import openpyxl
 
 # Définition de la classe VerificateurImmatriculation
 class VerificateurImmatriculation:
