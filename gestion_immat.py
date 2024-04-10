@@ -129,8 +129,8 @@ def main():
                 try:
                     verifier = VerificateurImmatriculation(df, colonne_immatriculation)
                     df_resultat = verifier.verifier_et_ajouter_statut()
-                    st.write(df_resultat)
                     format_extraction = st.radio("Format d'extraction :", options=["CSV", "Excel"])
+                    st.write(df_resultat)
                 except Exception as e:
                     st.error(f"Une erreur s'est produite : {e}")
 
