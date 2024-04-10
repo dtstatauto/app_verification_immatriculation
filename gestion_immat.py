@@ -109,14 +109,13 @@ class VerificateurImmatriculation:
 
 def main():
     st.title("Vérification d'immatriculation")
-
     chemin_fichier = st.file_uploader("Sélectionnez un fichier Excel ou CSV", type=["xlsx", "xls", "csv"])
     premiere_ligne_non_vide = st.number_input("Numéro de la première ligne non vide :", min_value=1, value=1)
 
     if chemin_fichier is not None:
         extension = chemin_fichier.name.split('.')[-1]
         if extension.lower() == 'csv':
-            df = pd.read_csv(chemin_fichier, delimiter  = ";", skiprows=premiere_ligne_non_vide - 1)
+            df = lire_csv(chemin_fichier, premiere_ligne_non_vide)
         else:
             df = pd.read_excel(chemin_fichier, skiprows=premiere_ligne_non_vide - 1)
 
@@ -129,8 +128,15 @@ def main():
                 try:
                     verifier = VerificateurImmatriculation(df, colonne_immatriculation)
                     df_resultat = verifier.verifier_et_ajouter_statut()
-                    format_extraction = st.radio("Format d'extraction :", options=["CSV", "Excel"])
                     st.write(df_resultat)
+
+                    # Ajouter un bouton de téléchargement
+                    st.download_button(
+                        label="Télécharger le résultat",
+                        data=df_resultat.to_csv().encode('utf-8'),
+                        file_name='resultat.csv',
+                        mime='text/csv'
+                    )
                 except Exception as e:
                     st.error(f"Une erreur s'est produite : {e}")
 
