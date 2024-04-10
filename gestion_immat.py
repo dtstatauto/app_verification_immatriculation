@@ -107,6 +107,10 @@ class VerificateurImmatriculation:
 
         return self.df
 
+def lire_csv(chemin_fichier, premiere_ligne_non_vide):
+    return pd.read_csv(chemin_fichier, skiprows=premiere_ligne_non_vide - 1)
+
+
 def main():
     st.title("Vérification d'immatriculation")
     chemin_fichier = st.file_uploader("Sélectionnez un fichier Excel ou CSV", type=["xlsx", "xls", "csv"])
@@ -115,7 +119,7 @@ def main():
     if chemin_fichier is not None:
         extension = chemin_fichier.name.split('.')[-1]
         if extension.lower() == 'csv':
-            df = pd.read_csv(chemin_fichier, premiere_ligne_non_vide)
+            df = lire_csv(chemin_fichier, premiere_ligne_non_vide)
         else:
             df = pd.read_excel(chemin_fichier, skiprows=premiere_ligne_non_vide - 1)
 
