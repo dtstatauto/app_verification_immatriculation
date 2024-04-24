@@ -113,6 +113,8 @@ class VerificateurImmatriculation:
 
 def main():
     st.title("Vérification d'immatriculation")
+    st.image("C:\\Users\\A0845168\\OneDrive - Aon\\Desktop\\Test\\app_verification_immatriculation\\logo.png", width=100)
+
     chemin_fichier = st.file_uploader("Sélectionnez un fichier Excel ou CSV", type=["xlsx", "xls", "csv"])
     premiere_ligne_non_vide = st.number_input("Numéro de la première ligne non vide :", min_value=1, value=1)
 
