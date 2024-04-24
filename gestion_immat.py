@@ -92,6 +92,8 @@ class VerificateurImmatriculation:
                         break
             elif '0' in numero[1:]:
                 statut = "NON"
+            else:
+                statut = "NON"
 
         # Si le nombre de caractères est inférieur à 6 ou supérieur à 9
         elif nb_caracteres < 6 or nb_caracteres > 9:
