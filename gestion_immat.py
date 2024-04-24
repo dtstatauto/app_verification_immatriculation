@@ -131,14 +131,15 @@ def main():
                     verifier = VerificateurImmatriculation(df, colonne_immatriculation)
                     df_resultat = verifier.verifier_et_ajouter_statut()
                     st.write(df_resultat)
+		    data=df_resultat.to_excel('resultat.xlsx')
 
                     # Ajouter un bouton 
-                    st.download_button(
-                        label="Télécharger le résultat",
-                        data=df_resultat.to_excel('resultat.xlsx'),
+                    #st.download_button(
+                        #label="Télécharger le résultat",
+                        "data=df_resultat.to_excel('resultat.xlsx'),
                         #file_name=,
                         #mime='text/xlsx'
-                    )
+                    #)
                 except Exception as e:
                     st.error(f"Une erreur s'est produite : {e}")
 
