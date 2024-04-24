@@ -135,9 +135,9 @@ def main():
                     # Ajouter un bouton 
                     st.download_button(
                         label="Télécharger le résultat",
-                        data=df_resultat.to_excel(),
-                        file_name='resultat.xlsx',
-                        mime='text/xlsx'
+                        data=df_resultat.to_excel('resultat.xlsx'),
+                        #file_name=,
+                        #mime='text/xlsx'
                     )
                 except Exception as e:
                     st.error(f"Une erreur s'est produite : {e}")
