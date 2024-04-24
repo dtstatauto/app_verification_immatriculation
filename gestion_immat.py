@@ -132,12 +132,12 @@ def main():
                     df_resultat = verifier.verifier_et_ajouter_statut()
                     st.write(df_resultat)
 
-                    # Ajouter un bouton de téléchargement
+                    # Ajouter un bouton 
                     st.download_button(
                         label="Télécharger le résultat",
-                        data=df_resultat.to_csv().encode('utf-8'),
-                        file_name='resultat.csv',
-                        mime='text/csv'
+                        data=df_resultat.to_excel(),
+                        file_name='resultat.xlsx',
+                        mime='text/xlsx'
                     )
                 except Exception as e:
                     st.error(f"Une erreur s'est produite : {e}")
