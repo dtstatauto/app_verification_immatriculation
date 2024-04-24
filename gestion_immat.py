@@ -13,6 +13,7 @@ class VerificateurImmatriculation:
         statut = "OUI"
 
         # Déterminer le nombre de caractères dans l’immatriculation
+        numero = str(numero)
         nb_caracteres = len(numero)
 
         # Si le nombre de caractères est égal à 9
