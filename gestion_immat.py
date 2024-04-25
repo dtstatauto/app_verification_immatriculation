@@ -136,7 +136,7 @@ def main():
                     st.write(df_resultat)
 
                     excel_data = df_resultat.to_excel('resultat.xlsx')
-                    boutton = st.boutton("Télécharger le ficher Excel")
+                    boutton = st.button("Télécharger le ficher Excel")
 
                     if boutton:
                         st.download_button(
