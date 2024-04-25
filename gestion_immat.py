@@ -134,25 +134,7 @@ def main():
                     verifier = VerificateurImmatriculation(df, colonne_immatriculation)
                     df_resultat = verifier.verifier_et_ajouter_statut()
                     st.write(df_resultat)
-                    
-
-                    save_location = st.text_input("Entrez l'emplacement ou enregistrer le fichier (chemin complet):")
-
-                    if save_location:
-                        df_resultat.to_excel('resultat.xlsx')
-                        st.success("Fichier Excel enregistré avec succès à l'emplacement spécifié")
-
-                    # Ajouter un bouton 
-                    #st.download_button(
-                        #label="Télécharger le résultat",
-                        #data=df_resultat.to_excel('resultat.xlsx'),
-                    #st.download_button(
-                        #label="Télécharger le résultat",
-                        #"data=df_resultat.to_excel('resultat.xlsx'),
-                        #file_name=,
-                        #mime='text/xlsx'
-                    
-                    #)
+                    df_resultat.to_excel("resultats.xlsx")
                 except Exception as e:
                     st.error(f"Une erreur s'est produite : {e}")
         
