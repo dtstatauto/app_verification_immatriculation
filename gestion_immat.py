@@ -141,7 +141,7 @@ def main():
                     if boutton:
                         st.download_button(
                         label="Télécharger le résultat",
-                        data=excel_data
+                        data=excel_data,
                         file_name= 'data.xlsx',
                         mime='application/vnd;openxmlformats-officedocument;spreadsheethtml.sheet'
                         )
