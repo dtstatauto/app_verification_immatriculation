@@ -133,6 +133,7 @@ def main():
                 try:
                     verifier = VerificateurImmatriculation(df, colonne_immatriculation)
                     df_resultat = verifier.verifier_et_ajouter_statut()
+                    df_resultat.to_excel(index=False)
                     st.write("Télécharger le résulutat")
 
                     #exceldata =_ df_resultat.to_excel('resultat.xlsx')
