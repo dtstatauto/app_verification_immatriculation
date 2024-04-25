@@ -133,7 +133,7 @@ def main():
                 try:
                     verifier = VerificateurImmatriculation(df, colonne_immatriculation)
                     df_resultat = verifier.verifier_et_ajouter_statut()
-                    df_resultat.to_excel(index=False)
+                    df_resultat = df_resultat.to_excel("resultat.xlsx")
                     st.write("Télécharger le résulutat")
 
                     #exceldata =_ df_resultat.to_excel('resultat.xlsx')
@@ -144,7 +144,7 @@ def main():
                         label="Télécharger le résultat",
                         data=df_resultat,
                         file_name= 'data.xlsx',
-                        mime='application/vnd;openxmlformats-officedocument;spreadsheethtml.sheet'
+                        mime='application/vnd;openxmlformats-officedocument.spreadsheethtml.sheet'
                         )
                 except Exception as e:
                     st.error(f"Une erreur s'est produite : {e}")
