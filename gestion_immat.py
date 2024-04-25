@@ -133,15 +133,15 @@ def main():
                 try:
                     verifier = VerificateurImmatriculation(df, colonne_immatriculation)
                     df_resultat = verifier.verifier_et_ajouter_statut()
-                    st.write(df_resultat)
+                    st.write("Télécharger le résulutat")
 
-                    excel_data = df_resultat.to_excel('resultat.xlsx')
+                    #exceldata =_ df_resultat.to_excel('resultat.xlsx')
                     boutton = st.button("Télécharger le ficher Excel")
 
                     if boutton:
                         st.download_button(
                         label="Télécharger le résultat",
-                        data=excel_data,
+                        data=df_resultat,
                         file_name= 'data.xlsx',
                         mime='application/vnd;openxmlformats-officedocument;spreadsheethtml.sheet'
                         )
