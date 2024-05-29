@@ -131,21 +131,21 @@ def main():
                 df_resultat = pd.DataFrame(df_resultat)
                 st.write('Le fichier à correctement été traité avec succès')
                 st.dataframe(df_resultat)
-
-                tosave = st.radio("Choisissez le format d'enregistrement:", ('xlsx', 'csv'))
-
-                if st.button("Enregistrer le fichier traité"):
-                    if tosave == 'xlsx':
-                        output = BytesIO()
-                        with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                            df_resultat.to_excel(writer, index=False)
-                        output.seek(0)
-                        st.download_button(label="Télécharger en tant que Excel", data=output, file_name="fichier_traité.xlsx")
-                    else:
-                        output = df_resultat.to_csv(index=False).encode('utf-8')
-                        st.download_button(label="Télécharger en tant que CSV", data=output, file_name="fichier_traité.csv")
             except Exception as e:
                 st.error(f"Une erreur s'est produite : {e}")
+        
+        tosave = st.radio("Choisissez le format d'enregistrement:", ('xlsx', 'csv'))
+
+        if st.button("Enregistrer le fichier traité"):
+            if tosave == 'xlsx':
+                output = BytesIO()
+                with pd.ExcelWriter(output, engine='openpyxl') as writer:
+                    df_resultat.to_excel(writer, index=False)
+                    output.seek(0)
+                    st.download_button(label="Télécharger en tant que Excel", data=output, file_name="fichier_traité.xlsx")
+            else:
+                    output = df_resultat.to_csv(index=False).encode('utf-8')
+                    st.download_button(label="Télécharger en tant que CSV", data=output, file_name="fichier_traité.csv")
         
 
 if __name__ == "__main__":
