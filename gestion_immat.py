@@ -114,7 +114,7 @@ def main():
     st.title("Vérification d'immatriculation")
 
     chemin_fichier = st.file_uploader("Sélectionnez un fichier Excel ou CSV", type=["xlsx", "xls", "csv"])
-    premiere_ligne_non_vide = st.number_input("Veuillez indiquer le numéro de ligne des entêtes :", min_value=1, value=1)
+    premiere_ligne_non_vide = st.number_input("Numéro de ligne des entêtes :", min_value=1, value=1)
 
     if chemin_fichier is not None:
         extension = chemin_fichier.name.split('.')[-1]
