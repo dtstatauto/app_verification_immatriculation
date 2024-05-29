@@ -129,7 +129,7 @@ def main():
             try:
                 verifier = VerificateurImmatriculation(df)
                 df_resultat = verifier.verifier_et_ajouter_statut()
-                st.write(df_resultat)
+                st.dataframe(df_resultat)
                 df_resultat.to_excel("resultats.xlsx")
             except Exception as e:
                 st.error(f"Une erreur s'est produite : {e}")
