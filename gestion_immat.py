@@ -128,12 +128,13 @@ def main():
             try:
                 verifier = VerificateurImmatriculation(df)
                 df_resultat = verifier.verifier_et_ajouter_statut()
+                df_resultat = pd.DataFrame(df_resultat)
                 st.write('Le fichier à correctement été traité avec succès')
                 st.dataframe(df_resultat)
 
                 tosave = st.radio("Choisissez le format d'enregistrement:", ('xlsx', 'csv'))
 
-                if st.button("Enregistrer le fichier compilé"):
+                if st.button("Enregistrer le fichier traité"):
                     if tosave == 'xlsx':
                         output = BytesIO()
                         with pd.ExcelWriter(output, engine='openpyxl') as writer:
