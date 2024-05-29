@@ -139,7 +139,7 @@ def main():
         if st.button("Enregistrer le fichier traité"):
             verifier = VerificateurImmatriculation(df)
             df_resultat = verifier.verifier_et_ajouter_statut()
-            df_resultat = pd.DataFrame(df_resultat)
+            st.dataframe(df_resultat)
             if tosave == 'xlsx':
                 output = BytesIO()
                 with pd.ExcelWriter(output, engine='openpyxl') as writer:
