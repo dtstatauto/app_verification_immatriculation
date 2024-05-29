@@ -123,11 +123,11 @@ def main():
         else:
             df = pd.read_excel(chemin_fichier, skiprows=premiere_ligne_non_vide - 1)
 
-        if st.button("Traiter le fichier"):
+        if st.button("Cliquer pour traiter le fichier"):
             try:
                 verifier = VerificateurImmatriculation(df)
                 df_resultat = verifier.verifier_et_ajouter_statut()
-                st.write('Le fichier à été traité, voici le résultat', df_resultat)
+                st.write('Le fichier à correctement été traité, le résultat a été ajouté en dernière colonne : ', df_resultat)
             except Exception as e:
                 st.error(f"Une erreur s'est produite : {e}")
         
