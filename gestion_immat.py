@@ -140,16 +140,15 @@ def main():
             verifier = VerificateurImmatriculation(df)
             df_resultat = verifier.verifier_et_ajouter_statut()
             st.dataframe(df_resultat)
-            data_final = pd.DataFrame(df_resultat)
             
             if tosave == 'xlsx':
                 output = BytesIO()
                 with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                    data_final.to_excel(writer, index=False)
+                    df_resultat.to_excel(writer, index=False)
                     output.seek(0)
                     st.download_button(label="Télécharger en tant que Excel", data=output, file_name="fichier_traite.xlsx")
             else:
-                    output = data_final.to_csv(index=False).encode('utf-8')
+                    output = df_resultat.to_csv(index=False).encode('utf-8')
                     st.download_button(label="Télécharger en tant que CSV", data=output, file_name="fichier_traite.csv")
         
 
