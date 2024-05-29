@@ -104,7 +104,7 @@ class VerificateurImmatriculation:
         # Initialiser à 'OUI' le paramètre de retour (Statut_SIV/FNI)
         self.df['Statut_SIV/FNI'] = 'OUI'
 
-        # Appliquer la fonction à chaque élément de la colonne 'Numero_Immatriculation'
+        # Appliquer la fonction à chaque élément de la colonne Immatriculation'
         self.df['Statut_SIV/FNI'] = self.df['Immatriculation'].apply(self.verifier_immatriculation)
 
         return self.df
@@ -114,7 +114,7 @@ def main():
     st.title("Vérification d'immatriculation")
 
     chemin_fichier = st.file_uploader("Sélectionnez un fichier Excel ou CSV", type=["xlsx", "xls", "csv"])
-    premiere_ligne_non_vide = st.number_input("Numéro de la première ligne non vide :", min_value=1, value=1)
+    premiere_ligne_non_vide = st.number_input("Veuillez indiquer le numéro de ligne des entêtes :", min_value=1, value=1)
 
     if chemin_fichier is not None:
         extension = chemin_fichier.name.split('.')[-1]
@@ -123,14 +123,11 @@ def main():
         else:
             df = pd.read_excel(chemin_fichier, skiprows=premiere_ligne_non_vide - 1)
 
-        #colonne_immatriculation = st.selectbox("Sélectionnez la colonne à traiter :", df.columns)
-
         if st.button("Traiter le fichier"):
             try:
                 verifier = VerificateurImmatriculation(df)
                 df_resultat = verifier.verifier_et_ajouter_statut()
-                st.dataframe(df_resultat)
-                df_resultat.to_excel("resultats.xlsx")
+                st.write('Le fichier à été traité, voici le résultat', df_resultat)
             except Exception as e:
                 st.error(f"Une erreur s'est produite : {e}")
         
