@@ -137,6 +137,8 @@ def main():
         tosave = st.radio("Choisissez le format d'enregistrement:", ('xlsx', 'csv'))
 
         if st.button("Enregistrer le fichier traité"):
+            df_resultat = verifier.verifier_et_ajouter_statut()
+            df_resultat = pd.DataFrame(df_resultat)
             if tosave == 'xlsx':
                 output = BytesIO()
                 with pd.ExcelWriter(output, engine='openpyxl') as writer:
