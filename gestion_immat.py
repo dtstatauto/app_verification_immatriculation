@@ -4,9 +4,8 @@ import streamlit as st
 
 # Définition de la classe VerificateurImmatriculation
 class VerificateurImmatriculation:
-    def __init__(self, df, colone_immatriculation):
+    def __init__(self, df):
         self.df = df
-        self.colonne_immatriculation = colone_immatriculation
 
     def verifier_immatriculation(self, numero):
         # Initialiser le statut à 'OUI'
@@ -124,19 +123,16 @@ def main():
         else:
             df = pd.read_excel(chemin_fichier, skiprows=premiere_ligne_non_vide - 1)
 
-        colonne_immatriculation = st.selectbox("Sélectionnez la colonne à traiter :", df.columns)
+        #colonne_immatriculation = st.selectbox("Sélectionnez la colonne à traiter :", df.columns)
 
         if st.button("Traiter le fichier"):
-            if colonne_immatriculation == "":
-                st.error("Veuillez saisir le nom de la colonne à traiter.")
-            else:
-                try:
-                    verifier = VerificateurImmatriculation(df, colonne_immatriculation)
-                    df_resultat = verifier.verifier_et_ajouter_statut()
-                    st.write(df_resultat)
-                    df_resultat.to_excel("resultats.xlsx")
-                except Exception as e:
-                    st.error(f"Une erreur s'est produite : {e}")
+            try:
+                verifier = VerificateurImmatriculation(df)
+                df_resultat = verifier.verifier_et_ajouter_statut()
+                st.write(df_resultat)
+                df_resultat.to_excel("resultats.xlsx")
+            except Exception as e:
+                st.error(f"Une erreur s'est produite : {e}")
         
 
 if __name__ == "__main__":
