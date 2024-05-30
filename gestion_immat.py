@@ -113,6 +113,7 @@ class VerificateurImmatriculation:
 
 def main():
     st.title("Vérification d'immatriculation")
+    st.write("! Nommer la colonne à traiter : Immatriculation !")
 
     chemin_fichier = st.file_uploader("Sélectionnez un fichier Excel ou CSV", type=["xlsx", "xls", "csv"])
     premiere_ligne_non_vide = st.number_input("Numéro de ligne des entêtes :", min_value=1, value=1)
@@ -127,14 +128,13 @@ def main():
         if st.button("Cliquer pour traiter le fichier"):
             try:
                 df_resultat = VerificateurImmatriculation(df).verifier_et_ajouter_statut()
-                st.write('Le fichier à correctement été traité avec succès :')
-                st.dataframe(df_resultat)
+                st.write('Le fichier à été traité avec succès, vous pouvez le télécharger :')
             except Exception as e:
                 st.error(f"Une erreur s'est produite : {e}")
         
         tosave = st.radio("Choisissez le format d'enregistrement:", ('xlsx', 'csv'))
 
-        if st.button("Enregistrer le fichier traité"):
+        if st.button("Voici le fichier après traitement :"):
             df_resultat = VerificateurImmatriculation(df).verifier_et_ajouter_statut()
             st.dataframe(df_resultat)
             
