@@ -143,7 +143,6 @@ def main():
                 df_resultat.to_excel("fichier_temp.xlsx")
                 with open("fichier_temp.xlsx", 'rb') as f:
                     bytes = f.read()
-                    output.seek(0)
                     st.download_button(label="Télécharger en tant que Excel", data=bytes, file_name="fichier_traite.xlsx")
             else:
                     output = df_resultat.to_csv().encode('utf-8')
