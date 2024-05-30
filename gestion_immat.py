@@ -126,7 +126,7 @@ def main():
 
         if st.button("Cliquer pour traiter le fichier"):
             try:
-                df_resultat = VerificateurImmatriculation(df).verifier_et_ajouter_statut
+                df_resultat = VerificateurImmatriculation(df).verifier_et_ajouter_statut()
                 df_resultat = pd.DataFrame(df_resultat)
                 st.write('Le fichier à correctement été traité avec succès :')
                 st.dataframe(df_resultat)
@@ -137,17 +137,16 @@ def main():
 
         if st.button("Enregistrer le fichier traité"):
             df_resultat = VerificateurImmatriculation(df).verifier_et_ajouter_statut()
-            df_resultat = pd.DataFrame(df_resultat)
             st.dataframe(df_resultat)
             
             if tosave == 'xlsx':
                 output = BytesIO()
                 with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                    df_resultat.to_excel(writer, index=False)
+                    df_resultat.to_excel(writer)
                     output.seek(0)
                     st.download_button(label="Télécharger en tant que Excel", data=output, file_name="fichier_traite.xlsx")
             else:
-                    output = df_resultat.to_csv(index=False).encode('utf-8')
+                    output = df_resultat.to_csv().encode('utf-8')
                     st.download_button(label="Télécharger en tant que CSV", data=output, file_name="fichier_traite.csv")
         
 
