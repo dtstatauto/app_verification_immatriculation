@@ -128,7 +128,7 @@ def main():
         if st.button("Cliquer pour traiter le fichier"):
             try:
                 df_resultat = VerificateurImmatriculation(df).verifier_et_ajouter_statut()
-                st.write('Le fichier à été traité avec succès, vous pouvez le télécharger :')
+                st.write('Le fichier à été traité avec succès, choisissez le format de téléchargement :')
             except Exception as e:
                 st.error(f"Une erreur s'est produite : {e}")
         
