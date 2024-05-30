@@ -141,8 +141,7 @@ def main():
             if tosave == 'xlsx':
                 output = BytesIO()
                 with pd.ExcelWriter(output, engine='openpyxl') as writer:
-                    df_resultat = pd.DataFrame(df_resultat)
-                    df_resultat.to_excel(writer)
+                    output = df_resultat.to_excel(writer)
                     st.download_button(label="Télécharger en tant que Excel", data=output, file_name="fichier_traite.xlsx")
             else:
                     output = df_resultat.to_csv().encode('utf-8')
