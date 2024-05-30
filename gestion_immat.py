@@ -127,7 +127,6 @@ def main():
         if st.button("Cliquer pour traiter le fichier"):
             try:
                 df_resultat = VerificateurImmatriculation(df).verifier_et_ajouter_statut()
-                df_resultat = pd.DataFrame(df_resultat)
                 st.write('Le fichier à correctement été traité avec succès :')
                 st.dataframe(df_resultat)
             except Exception as e:
@@ -142,6 +141,7 @@ def main():
             if tosave == 'xlsx':
                 output = BytesIO()
                 with pd.ExcelWriter(output, engine='openpyxl') as writer:
+                    df_resultat = pd.DataFrame(df_resultat)
                     df_resultat.to_excel(writer)
                     output.seek(0)
                     st.download_button(label="Télécharger en tant que Excel", data=output, file_name="fichier_traite.xlsx")
